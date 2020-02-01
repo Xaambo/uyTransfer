@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>uy! transfer</title>
+	<link rel="icon" href="http://marcasru.esy.es/uytransfer/images/favicon.png" type="image/x-icon" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap2/bootstrap-switch.min.css">
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Audiowide|Permanent+Marker');
+		* { outline: 0px !important; font-family: Audiowide;}
+		html, body, section { height: 100%; box-sizing: border-box; overflow: hidden;}
+		.navbar {padding-left: 5%; opacity: 0.8;}
+		section {width: 100%; background-color: #74b9ff;}
+		section > div {margin-top: 200px;}
+		label { font-size: 18px;}
+		h2, h4 { font-family: "Permanent Marker";}
+	</style>
+</head>
+
+<body>
+	
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".mostrar_opciones">
+            <span class="sr-only">Desplegar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">uy! transfer</a>
+        </div>
+        <div class="collapse navbar-collapse mostrar_opciones">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">ayuda</a></li>
+            <li><a href="/">quienes somos</a></li>
+            <li><a href="/">¿tienes plus?</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+	<section>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10">
+					<form role="form" class="form-horizontal" action="/upload" method="post" enctype="multipart/form-data">
+						<div class="form-group">
+							<div class="input-group input-file" name="archivo">
+								<span class="input-group-btn">
+        							<button class="btn btn-choose btn-lg btn-primary" type="button"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;Examinar ...</button>
+    							</span>
+    							<input type="text" class="form-control input-lg panel-primary" placeholder="Selecciona un archivo ..."  required />
+							</div>
+						</div>
+						<div class="form-group">
+                			<label for="por_email" style="color:#fff;">
+							<input type="checkbox" class="input-lg" name="por_email" id="por_email" onchange="changeEmail();" />
+                    			Quiero compartir el archivo por correo electrónico
+                			</label>
+        				</div>
+						<div class="form-group">
+							<input type="email" name="email" id="email" class="form-control input-lg panel-primary" disabled placeholder="Indica el email de destino" />
+						</div>
+						<button type="submit" class="btn btn-primary btn-lg pull-right"><span class="glyphicon glyphicon-cloud-upload"></span> Subir</button>
+					</form>
+				</div>
+			<div>
+		</div>
+	</section>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
+	<script type="text/javascript">$(document).ready(function (){$("[name='por_email']").bootstrapSwitch();});function changeEmail() {$("#email").prop("disabled", !($("[name='por_email']").prop("checked"))); $("#email").prop("required", ($("[name='por_email']").prop("checked")));} function bs_input_file() {$(".input-file").before(function() {if ( ! $(this).prev().hasClass('input-ghost') ) {var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");element.attr("name",$(this).attr("name"));element.change(function(){element.next(element).find('input').val((element.val()).split('\\').pop());});$(this).find("button.btn-choose").click(function(){element.click();});$(this).find("button.btn-reset").click(function(){element.val(null);$(this).parents(".input-file").find('input').val('');});$(this).find('input').css("cursor","pointer");$(this).find('input').mousedown(function() {$(this).parents('.input-file').prev().click();return false;});return element;}});}$(function() {bs_input_file();});
+	</script>
+
+</body>
+</html>
